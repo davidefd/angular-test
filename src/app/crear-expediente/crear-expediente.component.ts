@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router'; // Importa Router si deseas hacer navegación
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+  selector: 'app-crear-expediente',
+  templateUrl: './crear-expediente.component.html',
+  styleUrls: ['./crear-expediente.component.css']
 })
-export class FormularioComponent implements OnInit {
+export class CrearExpedienteComponent {
 
+  
   tipoAnimal: string[] = ['Felino', 'Canino'];
   razaAnimal: string[] = [];
 
@@ -57,7 +58,7 @@ export class FormularioComponent implements OnInit {
    // Método para regresar al menú o a la página anterior
    regresar(): void {
     // Ejemplo de redirección a una ruta específica
-    this.router.navigate(['/home']); // Cambia '/menu' a la ruta que necesites
+    this.router.navigate(['/menu-expediente']); // Cambia '/menu' a la ruta que necesites
   }
 
   // Método para guardar el expediente
@@ -74,5 +75,6 @@ export class FormularioComponent implements OnInit {
   limpiar(): void {
     this.formularioRegistro.reset(); // Limpia el formulario
   }
+
 
 }
