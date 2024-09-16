@@ -7,13 +7,15 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { PruebaComponent } from './prueba/prueba.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormularioComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PruebaComponent
   ],
   imports: [
     BrowserModule,

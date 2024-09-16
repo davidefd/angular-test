@@ -26,8 +26,14 @@ export class LoginComponent {
     this.user = this.formularioLogin.get('user')?.value
     this.password = this.formularioLogin.get('password')?.value
 
+    if (this.formularioLogin.invalid) {
+      this.formularioLogin.markAllAsTouched();
+      return;
+    }
+
     if (this.user === 'user' && this.password === '123') {
       this.router.navigate(['/home'])
+      console.log(this.formularioLogin);
     } else {
       alert('Verifique su usuario y contraseña...');
       this.router.navigate(['/login'])
