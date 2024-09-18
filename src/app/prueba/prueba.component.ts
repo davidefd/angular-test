@@ -25,6 +25,7 @@ export class PruebaComponent {
 
     this.user = this.loginForm.get('email')?.value
     this.password = this.loginForm.get('password')?.value
+    console.log(this.loginForm);
 
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();

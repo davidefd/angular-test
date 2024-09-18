@@ -4,7 +4,7 @@
         <h2>Ingreso de Expediente de Mascotas</h2>
     </div>
 
-    <form [formGroup]="formularioRegistro" (ngSubmit)="enviar()">
+    <form [formGroup]="formularioRegistro" (ngSubmit)="guardarExpediente()">
 
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -34,8 +34,10 @@
 
             <div class="col-md-6 mb-3">
                 <label class="form-label" for="gender">Género</label>
-                <input [ngClass]="{'is-invalid': hasErrors('gender', 'required')}" type="text" class="form-control"
-                    id="gender" formControlName="gender">
+                <select [ngClass]="{'is-invalid': hasErrors('gender', 'required')}" class="form-select" id="gender" formControlName="gender">
+                    <option value="1">Macho</option>
+                    <option value="2">Hembra</option>
+                </select>
                 <div class="text-danger" *ngIf="hasErrors('gender', 'required')"> Campo obligatorio </div>
             </div>
         </div>
@@ -108,7 +110,7 @@
             <button type="button" class="btn btn-secondary" (click)="regresar()">Regresar</button>
             <div>
                 <button type="button" class="btn btn-danger me-2" (click)="limpiar()">Limpiar</button>
-                <button type="button" class="btn btn-success" (click)="guardarExpediente()">Guardar Expediente</button>
+                <button type="submit" class="btn btn-success">Guardar Expediente</button>
             </div>
         </div>
     </form>
