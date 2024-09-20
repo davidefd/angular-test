@@ -10,6 +10,7 @@ import { PruebaComponent } from './prueba/prueba.component';
 import { MenuExpedienteComponent } from './menu-expediente/menu-expediente.component';
 import { CrearExpedienteComponent } from './crear-expediente/crear-expediente.component';
 import { ModificarExpedienteComponent } from './modificar-expediente/modificar-expediente.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ModificarExpedienteComponent } from './modificar-expediente/modificar-e
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

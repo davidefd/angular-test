@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Registro } from 'src/models/registro';
+import { NuevoExpedienteServiceService } from '../service/nuevo-expediente-service.service';
+import { Raza } from 'src/models/raza';
 
 @Component({
   selector: 'app-crear-expediente',
@@ -10,18 +12,8 @@ import { Registro } from 'src/models/registro';
 })
 export class CrearExpedienteComponent {
 
-  nombreMascota: string = '';
-  nombrePropietario: string = '';
-  tipoMascota: string = '';
-  genero: number = 0;
-  raza: string = '';
-  color: string = '';
-  peso: string = '';
-  temperatura: string = '';
-  frecuencia: string = '';
-  direccion: string = '';
-  telefono: string = '';
-  medico: string = '';
+  expediente: Registro = new Registro();
+  raza: Raza = new Raza();
 
   tipoAnimal: string[] = ['Felino', 'Canino'];
   razaAnimal: string[] = [];
@@ -31,7 +23,7 @@ export class CrearExpedienteComponent {
 
   formularioRegistro: FormGroup;
 
-  constructor(private form: FormBuilder, private router: Router) {
+  constructor(private form: FormBuilder, private router: Router, private _service: NuevoExpedienteServiceService) {
     this.formularioRegistro = this.form.group({
       name: ['', Validators.required],
       owner: ['', Validators.required],
@@ -61,10 +53,6 @@ export class CrearExpedienteComponent {
     });
   }
 
-  hasErrors(controlName: string, errorType: string) {
-    return this.formularioRegistro.get(controlName)?.hasError(errorType) && this.formularioRegistro.get(controlName)?.touched
-  }
-
   // Método para regresar al menú o a la página anterior
   regresar(): void {
     // Ejemplo de redirección a una ruta específica
@@ -73,41 +61,24 @@ export class CrearExpedienteComponent {
 
   // Método para guardar el expediente
   guardarExpediente() {
+    this.expediente.masNombre = this.formularioRegistro.get('name')?.value;
+    this.expediente.masPropietario = this.formularioRegistro.get('owner')?.value;
+    this.expediente.masColor = this.formularioRegistro.get('color')?.value;
+    this.raza.razId = 1;
+    this.expediente.raza = this.raza;
 
-    console.log(this.formularioRegistro)
-
-    // this.nombreMascota = this.formularioRegistro.get('name')?.value;
-    // this.nombrePropietario = this.formularioRegistro.get('owner')?.value;
-    // this.tipoMascota = this.formularioRegistro.get('animal')?.value;
-    // this.genero = parseInt(this.formularioRegistro.get('gender')?.value);
-    // this.raza = this.formularioRegistro.get('raza')?.value;
-    // this.color = this.formularioRegistro.get('color')?.value;
-    // this.peso = this.formularioRegistro.get('weight')?.value;
-    // this.temperatura = this.formularioRegistro.get('temp')?.value;
-    // this.frecuencia = this.formularioRegistro.get('frec')?.value;
-    // this.direccion = this.formularioRegistro.get('address')?.value;
-    // this.telefono = this.formularioRegistro.get('phone')?.value;
-    // this.medico = this.formularioRegistro.get('med')?.value;
-
-    // const nuevoExpediente = new Registro(this.nombreMascota, this.nombrePropietario, this.tipoMascota, this.genero,
-    //   this.raza, this.color, this.peso, this.temperatura, this.frecuencia, this.direccion, this.telefono, this.medico
-    // );
-
-    // if (this.formularioRegistro.invalid) {
-    //   this.formularioRegistro.markAllAsTouched();
-    // }
-    // console.log(nuevoExpediente);
-
-    if (this.formularioRegistro.valid) {
-      console.log(this.formularioRegistro)
-    }
-
-
+    this._service.crearNuevoExpediente(this.expediente).subscribe((res => {
+      alert(res);
+      this.formularioRegistro.reset();
+    }));
   }
 
   limpiar(): void {
     this.formularioRegistro.reset(); // Limpia el formulario
   }
 
+  hasErrors(controlName: string, errorType: string) {
+    return this.formularioRegistro.get(controlName)?.hasError(errorType) && this.formularioRegistro.get(controlName)?.touched
+  }
 
 }
