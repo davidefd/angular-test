@@ -11,6 +11,10 @@ import { MenuExpedienteComponent } from './menu-expediente/menu-expediente.compo
 import { CrearExpedienteComponent } from './crear-expediente/crear-expediente.component';
 import { ModificarExpedienteComponent } from './modificar-expediente/modificar-expediente.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +25,18 @@ import { HttpClientModule } from '@angular/common/http';
     PruebaComponent,
     MenuExpedienteComponent,
     CrearExpedienteComponent,
-    ModificarExpedienteComponent
+    ModificarExpedienteComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

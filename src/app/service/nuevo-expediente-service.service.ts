@@ -11,6 +11,7 @@ export class NuevoExpedienteServiceService {
 
   //método para crear nuevo expediente...
   crearNuevoExpediente(expediente: Registro) {
-    return this.http.post<Registro>("http://localhost:8080/happyfriends/nuevoExpediente", expediente);
+    //return this.http.post<Registro>("http://localhost:8080/happyfriends/nuevoExpediente", expediente,{ responseType: 'text' });
+      return this.http.post<Registro>("http://localhost:8080/happyfriends/nuevoExpediente", expediente,{ responseType: 'text'  as 'json'});
   }
 }
